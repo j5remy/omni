@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (QApplication, QComboBox, QMainWindow, QPushButton,
 from skimage.metrics import structural_similarity
 
 from nlp.generate_notes import generate_notes
-from ocr.worker import OCRWorker
+from ocr.ocr_worker import OCRWorker
 
 
 class MainWindow(QMainWindow):
