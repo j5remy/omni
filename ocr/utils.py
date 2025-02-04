@@ -1,6 +1,7 @@
 import cv2
 
 
+# This function is currently not used
 def preprocess_for_ocr(gray_image):
     """
     Preprocess the grayscale image using adaptive thresholding and median blurring.

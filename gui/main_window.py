@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import (QApplication, QComboBox, QMainWindow, QPushButton,
                              QVBoxLayout, QWidget)
 from skimage.metrics import structural_similarity
 
+from nlp.generate_notes import generate_notes
 from ocr.worker import OCRWorker
 
 
@@ -120,6 +121,13 @@ class MainWindow(QMainWindow):
                 text = result.get("text", "")
                 if text.strip():
                     print(f"Extracted Text from Screenshot:\n{text}\n{'-'*50}")
+                    
+                    # Generate bullet point notes from the OCR text
+                    notes = generate_notes(text)
+                    if notes:
+                        print(f"Notes:\n{notes}\n{'='*50}")
+                    else:
+                        print("No bullet notes produced.\n" + "="*50)
                 else:
                     print("No text detected in this capture.\n" + "-"*50)
         self.is_processing = False

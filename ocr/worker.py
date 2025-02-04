@@ -2,8 +2,6 @@ import cv2
 import pytesseract
 from PyQt5.QtCore import QThread, pyqtSignal
 
-from ocr.utils import preprocess_for_ocr
-
 
 class OCRWorker(QThread):
     finished = pyqtSignal(dict)
@@ -24,8 +22,6 @@ class OCRWorker(QThread):
                     "laplacian_var": laplacian_var
                 }
             else:
-                # Preprocess the image before OCR.
-                # processed = preprocess_for_ocr(self.gray_image)
                 text = pytesseract.image_to_string(self.gray_image, config="--psm 3")
                 result = {
                     "text": text,
