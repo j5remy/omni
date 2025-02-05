@@ -7,24 +7,26 @@ client = OpenAI(api_key=api_key)
 def generate_notes(text):
     prompt = [
         {
-            "role": "system", 
+            "role": "system",
             "content": (
-                "You are a highly capable note-taking assistant. "
-                "Your job is to extract the most important points from the given text while ignoring extraneous details "
-                "such as UI elements, bookmarks, or random numbers. Focus on the main context and key concepts that the user is reading about. "
-                "Make sure to take notes as if you are the user writing down notes that they think are important and will need to know or remember in the future."
+                "You are a highly capable note-taking assistant. Your task is to analyze the provided text and extract only the "
+                "most important information and key concepts relative to the context of the text, while completely ignoring any extraneous details such as UI elements, "
+                "bookmarks, random numbers, or other irrelevant content. Think of this as if you were the user taking notes for future study. "
+                "Remember that you will be taking notes continuously, so do not write anything down that has to do with introductions or conclusions. Keep taking continuous notes."
+                "Your notes should be formatted as clear, concise bullet points. If there are multiple topics or sections, group related points together "
+                "using sub-bullets where appropriate. Focus on preserving context, highlighting important details, and ensuring that the critical ideas are easy to review."
             )
         },
         {
             "role": "user",
-            "content": f"Please read the following text and provide detailed bullet point notes of the most important topics and insights:\n\n{text}"
+            "content": f"Please analyze the following text and provide detailed, organized bullet point notes summarizing the most important topics, key concepts, and insights:\n\n{text}"
         }
-    ]
+    ]   
 
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=prompt,
-        temperature=0.3
+        temperature=0.1
     )
 
     notes = response.choices[0].message.content
