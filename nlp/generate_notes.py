@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-# Make sure to set your API key
+# TODO: store api key in env variable
 api_key = "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"
 client = OpenAI(api_key=api_key)
 

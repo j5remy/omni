@@ -26,21 +26,18 @@ class MainWindow(QMainWindow):
         self.initUI()
         self.populate_screen_selector()
 
-        # Timer for periodic screenshots (1-second interval)
+        # Timer for periodic screenshots
         self.timer = QTimer()
         self.timer.timeout.connect(self.capture_and_process)
 
-        # Blur detection threshold remains
+        # Configuration values
         self.blur_threshold = 100  # Lower = more sensitive to blurriness
+        self.text_similarity_threshold = 0.4 # if similarity ratio is above this, text is too similar
 
-        # Flag to prevent overlapping OCR processes
-        self.is_processing = False
+        # State variables
+        self.is_processing = False # Flag to prevent overlapping OCR processes
+        self.previous_text = "" # Store previously extracted text
 
-        # Store the previously extracted OCR text.
-        self.previous_text = ""
-
-        # If the similarity ratio is above this, the texts are considered "too similar."
-        self.text_similarity_threshold = 0.4
 
     def initUI(self):
         central_widget = QWidget()

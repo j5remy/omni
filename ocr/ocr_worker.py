@@ -22,6 +22,7 @@ class OCRWorker(QThread):
                     "laplacian_var": laplacian_var
                 }
             else:
+                # Extract text from image
                 text = pytesseract.image_to_string(self.gray_image, config="--psm 3")
                 result = {
                     "text": text,
