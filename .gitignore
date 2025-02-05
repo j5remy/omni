@@ -39,3 +39,4 @@ wheels/
 # Project specific
 *.log
 *.sqlite3
+requirements.txt

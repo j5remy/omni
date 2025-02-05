@@ -94,10 +94,10 @@ class MainWindow(QMainWindow):
 
         # Run OCR
         self.worker = OCRWorker(gray_current, self.blur_threshold)
-        self.worker.finished.connect(self.handle_worker_result)
+        self.worker.finished.connect(self.handle_ocr_result)
         self.worker.start()
 
-    def handle_worker_result(self, result):
+    def handle_ocr_result(self, result):
         if "error" in result:
             print(f"Error during OCR: {result['error']}")
         else:
