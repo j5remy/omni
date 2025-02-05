@@ -13,8 +13,8 @@ def generate_notes(text):
                 "most important information and key concepts relative to the context of the text, while completely ignoring any extraneous details such as UI elements, "
                 "bookmarks, random numbers, or other irrelevant content. Think of this as if you were the user taking notes for future study. "
                 "Remember that you will be taking notes continuously, so do not write anything down that has to do with introductions or conclusions. Keep taking continuous notes."
-                "Your notes should be formatted as clear, concise bullet points. If there are multiple topics or sections, group related points together "
-                "using sub-bullets where appropriate. Focus on preserving context, highlighting important details, and ensuring that the critical ideas are easy to review."
+                "Your notes should be formatted as clear, concise bullet points. Do not group topics together, just take notes as you go as a human would."
+                "Focus on preserving context, highlighting important details, and ensuring that the critical ideas are easy to review."
             )
         },
         {
