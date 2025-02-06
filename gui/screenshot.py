@@ -7,12 +7,14 @@ from PyQt5.QtCore import QBuffer, QIODevice
 from PyQt5.QtWidgets import QApplication
 
 
-def capture_gray_screenshot(screen_selector):
+def capture_gray_screenshot(screen_selector,  selected_index=None):
     """
     Captures the current screen (based on the screen_selector widget)
     as a grayscale OpenCV image.
     """
-    selected_index = screen_selector.currentIndex()
+    if selected_index is None:
+        selected_index = screen_selector.currentIndex()
+        
     screens = QApplication.screens()
     screen = screens[selected_index] if selected_index < len(screens) else QApplication.primaryScreen()
     geometry = screen.geometry()
