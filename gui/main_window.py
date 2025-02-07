@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import (QAction, QApplication, QComboBox, QMainWindow,
 
 from gui.file_utils import save_text_to_file
 from gui.screenshot import capture_gray_screenshot
+from nlp.format_notes import format_notes
 from nlp.generate_notes import generate_notes
 from ocr.ocr_worker import OCRWorker
 
@@ -136,7 +137,8 @@ class MainWindow(QMainWindow):
             self.tray_session_action.setText("Start Session")
 
             # Save notes.
-            save_text_to_file(self, self.accumulated_notes)
+            formatted_notes = format_notes(self.accumulated_notes)
+            save_text_to_file(self, formatted_notes)
         else:
             # Start the OCR session.
             self.timer.start(750)  # Capture every 750ms.
@@ -200,15 +202,6 @@ class MainWindow(QMainWindow):
         self.is_processing = False
 
     def closeEvent(self, event):
-        """
-        Overrides the close event so that closing the window hides it
-        (leaving the app running in the tray) instead of quitting.
-        """
+        """Overrides the close event; hides to system tray."""
         event.ignore()
         self.hide()
-        self.tray_icon.showMessage(
-            "Omni Running",
-            "The application is still running in the system tray.",
-            QSystemTrayIcon.Information,
-            2000
-        )

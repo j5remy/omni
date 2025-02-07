@@ -13,7 +13,7 @@ def format_notes(accumulated_notes: str) -> str:
         "You are a note formatting assistant. Your task is to take raw, sequential bullet point notes and organize them "
         "into a final, well-structured format that is easy for a human to read. Group related bullet points into subtopics or "
         "categories when the information is related, and add appropriate headings if needed. If no grouping is necessary, simply "
-        "format the notes nicely. Do not add new information—only re-organize and format what is provided."
+        "format the notes nicely. Do not add new information—only re-organize and format what is provided. Do not shorten the information at all."
     )
     
     user_prompt = (
@@ -28,12 +28,12 @@ def format_notes(accumulated_notes: str) -> str:
     ]
     
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # or use another model like gpt-4 if desired
+        model="gpt-3.5-turbo",
         messages=prompt,
-        temperature=0.2,        # lower temperature for more deterministic output
-        max_tokens=1000,        # adjust as needed based on expected output length
-        top_p=1.0,
-        frequency_penalty=0,
+        temperature=0.1, 
+        max_tokens=4000, 
+        top_p=0.9,
+        frequency_penalty=0.2,
         presence_penalty=0
     )
     
