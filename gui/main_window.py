@@ -117,8 +117,6 @@ class MainWindow(QMainWindow):
 
     def set_selected_screen(self, index):
         """Updates the selected screen index"""
-        print(f"Selected screen: {index + 1}")
-
         self.selected_screen_index = index
         self.screen_selector.setCurrentIndex(index)
 
